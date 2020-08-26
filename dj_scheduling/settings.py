@@ -42,6 +42,10 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+
+    'scheduling.apps.SchedulingConfig',
+    'applicants.apps.ApplicantsConfig',
+    'doctors.apps.DoctorsConfig',
 ]
 
 # For django-allauth
@@ -141,3 +145,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_REDIRECT_URL = '/'
