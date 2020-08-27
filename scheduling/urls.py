@@ -1,9 +1,9 @@
 from django.urls import path
-from .views import home
+from .views import AppointmentListView
 
 
 app_name = 'scheduling'
 
 urlpatterns = [
-    path('', home, name='home'),
+    path('', AppointmentListView.as_view(), name='home'),
 ]

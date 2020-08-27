@@ -1,5 +1,10 @@
 from django.shortcuts import render
+from django.views.generic.list import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
-# Create your views here.
-def home(request):
-    return render(request, 'scheduling/home.html')
+from .models import Appointment
+
+
+class AppointmentListView(LoginRequiredMixin, ListView):
+    model = Appointment
+    template_name = 'scheduling/home.html'

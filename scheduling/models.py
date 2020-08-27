@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.urls import reverse
 from django.contrib.auth.models import User
 
 from applicants.models import Applicant
@@ -29,6 +30,10 @@ class Appointment(models.Model):
 
     def __str__(self):
         return f'{self.applicant} on {self.appointment_date}'
+
+    def get_absolute_url(self):
+        return reverse('appointment', kwargs={'pk': self.pk})
+
 
     # first declared manager is default
     objects = models.Manager()
