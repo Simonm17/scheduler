@@ -3,7 +3,7 @@
 {% block content %}
     <ul>
         {% for appointment in object_list %}
-            <li>{{ appointment }}, {{ appointment.created_by}}</li>
+            <li><a href="{% url 'scheduling:appointment' appointment.id %}">{{ appointment }}, {{ appointment.created_by}}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}
