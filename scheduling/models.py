@@ -22,7 +22,7 @@ class AppointmentManager(models.Manager):
 class Appointment(models.Model):
     appointment_date = models.DateTimeField()
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
-    doctors = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
 
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now_add=True)
