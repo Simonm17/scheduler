@@ -93,7 +93,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'dj_scheduling',
         'USER': 'postgres',
-        'PASSWORD': os.environ.get('DJ_SCHEDULING_DB_PW'),
+        'PASSWORD': os.environ.get('DJ_SCHEDULING_PSQL_PW'),
         'HOST': 'localhost',
         'PORT': '5432'
     }
@@ -132,7 +132,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Los_Angeles'
 
 USE_I18N = True
 

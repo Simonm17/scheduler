@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
@@ -30,8 +28,9 @@ class Appointment(models.Model):
     updated_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.appointment_date}'
+        return f'{self.applicant} on {self.appointment_date}'
 
+    # first declared manager is default
     objects = models.Manager()
     objects = AppointmentManager()
 
