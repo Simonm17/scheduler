@@ -3,7 +3,7 @@
 {% block content %}
     <ul>
         {% for appointment in object_list %}
-            <li>{{ appointment }}</li>
+            <li>{{ appointment }}, {{ appointment.created_by}}</li>
         {% endfor %}
     </ul>
 {% endblock %}
