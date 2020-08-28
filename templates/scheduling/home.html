@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <a href="{% url 'scheduling:new_appointment' %}">Schedule new appointment</a>
     <ul>
         {% for appointment in object_list %}
             <li><a href="{% url 'scheduling:appointment' appointment.id %}">{{ appointment }}, {{ appointment.created_by}}</a></li>
