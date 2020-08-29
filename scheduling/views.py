@@ -1,4 +1,7 @@
+from datetime import date
+
 from django.shortcuts import render, redirect
+from django.utils import timezone
 from django.views.generic import (
     ListView, 
     DetailView,
@@ -18,23 +21,30 @@ from doctors.forms import NewDoctorForm
 
 
 class AppointmentListView(LoginRequiredMixin, ListView):
-    """
-    TODO:   Current queryset displays all appts created by user.
-            We need to have some more filters 
-            to separate past and upcoming appts.
-            Maybe within template conditions?
-    """
+
     model = Appointment
     template_name = 'scheduling/home.html'
 
-    def get_queryset(self):
-        """ 
-        Return list of appointments scheduled by currently logged in user. 
-        """
+    def get_context_data(self, **kwargs):
         user = self.request.user
-        queryset = Appointment.objects.filter(created_by=user)
-        queryset = queryset.order_by('appointment_date')
-        return queryset
+        today = date.today()
+        context = super().get_context_data(**kwargs)
+        context['timezone_now'] = timezone.now()
+        context['todays_appointments'] = Appointment.objects.filter(
+            created_by=user,
+            appointment_date__year=today.year,
+            appointment_date__month=today.month,
+            appointment_date__day=today.day,
+        ).order_by('appointment_date')
+        context['upcoming_appointments'] = Appointment.objects.filter(
+            created_by=user,
+            appointment_date__date__gt=today
+        ).order_by('appointment_date')
+        context['past_appointments'] = Appointment.objects.filter(
+            created_by=user, 
+            appointment_date__date__lt=today 
+        ).order_by('-appointment_date')
+        return context
 
 
 class AppointmentDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
@@ -48,6 +58,7 @@ class AppointmentDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView)
         if user.is_staff or user == appointment.created_by:
             return True
         return False
+
 
 @login_required
 def schedule(request):

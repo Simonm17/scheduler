@@ -1,10 +1,43 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+    <h5>Timezone: {{ timezone_now }}</h5>
+
     <a href="{% url 'scheduling:new_appointment' %}">Schedule new appointment</a>
-    <ul>
-        {% for appointment in object_list %}
-            <li><a href="{% url 'scheduling:appointment' appointment.id %}">{{ appointment }}, {{ appointment.created_by}}</a></li>
+
+    <p>Today's appointments</p>
+    <ol>
+        {% for appointment in todays_appointments %}
+            <li>
+                <a href="{% url 'scheduling:appointment' appointment.id %}">
+                    {{ appointment.appointment_date|date:"M d, Y g:iA" }}, {{ appointment.created_by}}
+                </a>
+            </li>
         {% endfor %}
-    </ul>
+    </ol>
+
+    <p>Upcoming appointments</p>
+    <ol>
+        {% for appointment in upcoming_appointments %}
+            <li>
+                <a href="{% url 'scheduling:appointment' appointment.id %}">
+                    {{ appointment.appointment_date|date:"M d, Y g:iA" }}, {{ appointment.created_by}}
+                </a>
+            </li>
+        {% endfor %}
+    </ol>
+
+    <p>Past appointments</p>
+    <ol>
+        {% for appointment in past_appointments %}
+            <li>
+                <a href="{% url 'scheduling:appointment' appointment.id %}">
+                    {{ appointment.appointment_date|date:"M d, Y g:iA" }}, {{ appointment.created_by}}
+                </a>
+            </li>
+        {% endfor %}
+    </ol>
+
+
 {% endblock %}
