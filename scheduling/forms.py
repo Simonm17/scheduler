@@ -3,7 +3,7 @@ from django import forms
 from .models import Appointment
 
 
-class NewAppointmentForm(ModelForm):
+class AppointmentForm(ModelForm):
     appointment_date = forms.DateTimeField(
         input_formats = ['%Y-%m-%dT%H:%M'],
         widget = forms.DateTimeInput(

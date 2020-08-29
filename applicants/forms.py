@@ -3,7 +3,7 @@ from django.forms import forms, ModelForm, TextInput
 from .models import Applicant
 
 
-class NewApplicantForm(ModelForm):
+class ApplicantForm(ModelForm):
 
     class Meta:
         model = Applicant

@@ -13,11 +13,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 from .models import Appointment
-from .forms import NewAppointmentForm
+from .forms import AppointmentForm
 from applicants.models import Applicant
-from applicants.forms import NewApplicantForm
+from applicants.forms import ApplicantForm
 from doctors.models import Doctor
-from doctors.forms import NewDoctorForm
+from doctors.forms import DoctorForm
 
 
 class AppointmentListView(LoginRequiredMixin, ListView):
@@ -63,9 +63,9 @@ class AppointmentDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView)
 @login_required
 def schedule(request):
     if request.method == 'POST':
-        applicant_form = NewApplicantForm(request.POST, prefix='a_form')
-        doctor_form = NewDoctorForm(request.POST, prefix='d_form')
-        scheduling_form = NewAppointmentForm(request.POST, prefix='s_form')
+        applicant_form = ApplicantForm(request.POST, prefix='a_form')
+        doctor_form = DoctorForm(request.POST, prefix='d_form')
+        scheduling_form = AppointmentForm(request.POST, prefix='s_form')
         if applicant_form.is_valid() and doctor_form.is_valid() and scheduling_form.is_valid():
             # save applicant object
             applicant = applicant_form.save(commit=False)
@@ -85,12 +85,26 @@ def schedule(request):
             # redirect user to appointment object's detailview
             return redirect('scheduling:appointment', appointment.pk)
     else:
-        applicant_form = NewApplicantForm(prefix='a_form')
-        doctor_form = NewDoctorForm(prefix='d_form')
-        scheduling_form = NewAppointmentForm(prefix='s_form')
+        applicant_form = ApplicantForm(prefix='a_form')
+        doctor_form = DoctorForm(prefix='d_form')
+        scheduling_form = AppointmentForm(prefix='s_form')
     return render(request, 'scheduling/new_appointment.html', context={
         'a_form': applicant_form,
         'd_form': doctor_form,
         's_form': scheduling_form
         }
     )
+
+
+class AppointmentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Appointment
+    form_class = AppointmentForm
+    template_name = 'scheduling/update_appointment.html'
+
+    def test_func(self):
+        """ Validate whether user is staff or scheduler. """
+        appointment = self.get_object()
+        user = self.request.user
+        if user.is_staff or user == appointment.created_by:
+            return True
+        return False

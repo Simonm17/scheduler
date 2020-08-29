@@ -24,5 +24,5 @@ class Appointment(models.Model):
         return f'{self.applicant} on {self.appointment_date}'
 
     def get_absolute_url(self):
-        return reverse('appointment', kwargs={'pk': self.pk})
+        return reverse('scheduling:appointment', kwargs={'pk': self.pk})
 

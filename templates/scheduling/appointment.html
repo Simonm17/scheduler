@@ -3,4 +3,7 @@
 {% block content %}
     <h4>{{ object }}</h4>
     <h5>{{ object.appointment_date }}</h5>
+    <a href="{% url 'scheduling:update' object.id %}">Change appointment date</a>
+    <a href="{% url 'applicants:update' object.applicant.id %}?next={{ request.path }}">edit applicant</a>
+    <a href="{% url 'doctors:update' object.doctor.id %}?next={{ request.path }}">edit doctor</a>
 {% endblock %}

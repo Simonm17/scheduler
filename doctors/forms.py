@@ -2,7 +2,7 @@ from django.forms import forms, ModelForm, TextInput
 
 from .models import Doctor
 
-class NewDoctorForm(ModelForm):
+class DoctorForm(ModelForm):
 
     class Meta:
         model = Doctor
