@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <p>Delete the appointment permanently.</p>
+    <input type="submit" value="Delete">
+</form>
+
+{% endblock %}

@@ -2,11 +2,12 @@ from datetime import date
 
 from django.shortcuts import render, redirect
 from django.utils import timezone
+from django.urls import reverse_lazy
 from django.views.generic import (
     ListView, 
     DetailView,
-    CreateView,
     UpdateView,
+    DeleteView,
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
@@ -100,6 +101,18 @@ class AppointmentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView)
     model = Appointment
     form_class = AppointmentForm
     template_name = 'scheduling/update_appointment.html'
+
+    def test_func(self):
+        """ Validate whether user is staff or scheduler. """
+        appointment = self.get_object()
+        user = self.request.user
+        if user.is_staff or user == appointment.created_by:
+            return True
+        return False
+
+class AppointmentDeleteview(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Appointment
+    success_url = reverse_lazy('scheduling:home')
 
     def test_func(self):
         """ Validate whether user is staff or scheduler. """
