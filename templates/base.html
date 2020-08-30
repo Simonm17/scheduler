@@ -43,6 +43,9 @@
           <ul class="navbar-nav">
             {% if user.is_authenticated %}
             <li class="nav-item">
+              <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="{% url 'account_email' %}">Change Email</a>
             </li>
             <li class="nav-item">
