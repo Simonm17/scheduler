@@ -5,5 +5,5 @@ class UsersConfig(AppConfig):
     name = 'users'
 
     def ready(self):
-        """ Route signals to app """
+        """ Connect signals in users.signals. """
         import users.signals
