@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'scheduling.apps.SchedulingConfig',
     'applicants.apps.ApplicantsConfig',
     'doctors.apps.DoctorsConfig',
+    'users.apps.UsersConfig',
 ]
 
 # For django-allauth
@@ -147,5 +148,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = '/'
