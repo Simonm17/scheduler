@@ -1,10 +1,12 @@
 {% extends "account/base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <img src="{{ user.profile.image.url }}">
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form }}
+    {{ p_form|crispy }}
+    {{ u_form|crispy }}
     <input type="submit" value="update">
 </form>
 <a href="{% url 'account_change_password' %}">Change password</a>

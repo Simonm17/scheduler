@@ -11,7 +11,7 @@
         {% for appointment in todays_appointments %}
             <li>
                 <a href="{% url 'scheduling:appointment' appointment.id %}">
-                    {{ appointment.appointment_date|date:"M d, Y g:iA" }}, {{ appointment.created_by}}
+                    Applicant: {{ appointment.applicant }}, Doctor: {{ appointment.doctor }} on {{ appointment.appointment_date|date:"M d, Y g:iA" }}, {{ appointment.created_by}}
                 </a>
             </li>
         {% endfor %}
@@ -22,7 +22,7 @@
         {% for appointment in upcoming_appointments %}
             <li>
                 <a href="{% url 'scheduling:appointment' appointment.id %}">
-                    {{ appointment.appointment_date|date:"M d, Y g:iA" }}, {{ appointment.created_by}}
+                    Applicant: {{ appointment.applicant }}, Doctor: {{ appointment.doctor }} on {{ appointment.appointment_date|date:"M d, Y g:iA" }}, {{ appointment.created_by}}
                 </a>
             </li>
         {% endfor %}
@@ -33,7 +33,7 @@
         {% for appointment in past_appointments %}
             <li>
                 <a href="{% url 'scheduling:appointment' appointment.id %}">
-                    {{ appointment.appointment_date|date:"M d, Y g:iA" }}, {{ appointment.created_by}}
+                    Applicant: {{ appointment.applicant }}, Doctor: {{ appointment.doctor }} on {{ appointment.appointment_date|date:"M d, Y g:iA" }}, {{ appointment.created_by}}
                 </a>
             </li>
         {% endfor %}

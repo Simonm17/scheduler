@@ -64,9 +64,9 @@ class AppointmentDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView)
 @login_required
 def schedule(request):
     if request.method == 'POST':
-        applicant_form = ApplicantForm(request.POST, prefix='a_form')
-        doctor_form = DoctorForm(request.POST, prefix='d_form')
-        scheduling_form = AppointmentForm(request.POST, prefix='s_form')
+        applicant_form = ApplicantForm(request.POST, prefix='applicant')
+        doctor_form = DoctorForm(request.POST, prefix='doctor')
+        scheduling_form = AppointmentForm(request.POST, prefix='appointment')
         if applicant_form.is_valid() and doctor_form.is_valid() and scheduling_form.is_valid():
             # save applicant object
             applicant = applicant_form.save(commit=False)
@@ -86,9 +86,9 @@ def schedule(request):
             # redirect user to appointment object's detailview
             return redirect('scheduling:appointment', appointment.pk)
     else:
-        applicant_form = ApplicantForm(prefix='a_form')
-        doctor_form = DoctorForm(prefix='d_form')
-        scheduling_form = AppointmentForm(prefix='s_form')
+        applicant_form = ApplicantForm(prefix='applicant')
+        doctor_form = DoctorForm(prefix='doctor')
+        scheduling_form = AppointmentForm(prefix='appointment')
     return render(request, 'scheduling/new_appointment.html', context={
         'a_form': applicant_form,
         'd_form': doctor_form,
