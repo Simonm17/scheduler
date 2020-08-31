@@ -1,43 +1,54 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    {% if user.is_authenticated %}
+        <div class="row mt-5">
 
-    <h5>Timezone: {{ timezone_now }}</h5>
+            <div class="col-sm-7 col-lg-6 order-lg-2">
+                <a class="btn btn-primary btn-lg btn-block mb-3" href="{% url 'scheduling:new_appointment' %}">Schedule new appointment</a>
+            </div>
 
-    <a href="{% url 'scheduling:new_appointment' %}">Schedule new appointment</a>
+            <div class="col-sm-7 col-lg-6 order-lg-1">
 
-    <p>Today's appointments</p>
-    <ol>
-        {% for appointment in todays_appointments %}
-            <li>
-                <a href="{% url 'scheduling:appointment' appointment.id %}">
-                    Applicant: {{ appointment.applicant }}, Doctor: {{ appointment.doctor }} on {{ appointment.appointment_date|date:"M d, Y g:iA" }}, {{ appointment.created_by}}
-                </a>
-            </li>
-        {% endfor %}
-    </ol>
+                <h3>Today's appointments</h3>
+                <ol>
+                    {% for appointment in todays_appointments %}
+                        <li>
+                            <a href="{% url 'scheduling:appointment' appointment.id %}">
+                                Applicant: {{ appointment.applicant }}, Doctor: {{ appointment.doctor }} on {{ appointment.appointment_date|date:"M d, Y g:iA" }}, {{ appointment.created_by}}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ol>
+            </div>
 
-    <p>Upcoming appointments</p>
-    <ol>
-        {% for appointment in upcoming_appointments %}
-            <li>
-                <a href="{% url 'scheduling:appointment' appointment.id %}">
-                    Applicant: {{ appointment.applicant }}, Doctor: {{ appointment.doctor }} on {{ appointment.appointment_date|date:"M d, Y g:iA" }}, {{ appointment.created_by}}
-                </a>
-            </li>
-        {% endfor %}
-    </ol>
+            <div class="col-sm-7 col-lg-6 order-lg-3">
+                <h4>Upcoming appointments</h4>
+                <ol>
+                    {% for appointment in upcoming_appointments %}
+                        <li>
+                            <a href="{% url 'scheduling:appointment' appointment.id %}">
+                                Applicant: {{ appointment.applicant }}, Doctor: {{ appointment.doctor }} on {{ appointment.appointment_date|date:"M d, Y g:iA" }}, {{ appointment.created_by}}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ol>
+            </div>
 
-    <p>Past appointments</p>
-    <ol>
-        {% for appointment in past_appointments %}
-            <li>
-                <a href="{% url 'scheduling:appointment' appointment.id %}">
-                    Applicant: {{ appointment.applicant }}, Doctor: {{ appointment.doctor }} on {{ appointment.appointment_date|date:"M d, Y g:iA" }}, {{ appointment.created_by}}
-                </a>
-            </li>
-        {% endfor %}
-    </ol>
+            <div class="col-sm-7 col-lg-6 order-lg-4">
+                <h4>Past appointments</h4>
+                <ol>
+                    {% for appointment in past_appointments %}
+                        <li>
+                            <a href="{% url 'scheduling:appointment' appointment.id %}">
+                                Applicant: {{ appointment.applicant }}, Doctor: {{ appointment.doctor }} on {{ appointment.appointment_date|date:"M d, Y g:iA" }}, {{ appointment.created_by}}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ol>
+            </div>
 
+        </div>
+    {% endif %}
 
 {% endblock %}

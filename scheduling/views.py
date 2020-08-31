@@ -21,31 +21,34 @@ from doctors.models import Doctor
 from doctors.forms import DoctorForm
 
 
-class AppointmentListView(LoginRequiredMixin, ListView):
+class AppointmentListView(ListView):
 
     model = Appointment
     template_name = 'scheduling/home.html'
 
     def get_context_data(self, **kwargs):
-        user = self.request.user
-        today = date.today()
-        context = super().get_context_data(**kwargs)
-        context['timezone_now'] = timezone.now()
-        context['todays_appointments'] = Appointment.objects.filter(
-            created_by=user,
-            appointment_date__year=today.year,
-            appointment_date__month=today.month,
-            appointment_date__day=today.day,
-        ).order_by('appointment_date')
-        context['upcoming_appointments'] = Appointment.objects.filter(
-            created_by=user,
-            appointment_date__date__gt=today
-        ).order_by('appointment_date')
-        context['past_appointments'] = Appointment.objects.filter(
-            created_by=user, 
-            appointment_date__date__lt=today 
-        ).order_by('-appointment_date')
-        return context
+        try:
+            user = self.request.user
+            today = date.today()
+            context = super().get_context_data(**kwargs)
+            context['timezone_now'] = timezone.now()
+            context['todays_appointments'] = Appointment.objects.filter(
+                created_by=user,
+                appointment_date__year=today.year,
+                appointment_date__month=today.month,
+                appointment_date__day=today.day,
+            ).order_by('appointment_date')
+            context['upcoming_appointments'] = Appointment.objects.filter(
+                created_by=user,
+                appointment_date__date__gt=today
+            ).order_by('appointment_date')
+            context['past_appointments'] = Appointment.objects.filter(
+                created_by=user, 
+                appointment_date__date__lt=today 
+            ).order_by('-appointment_date')
+            return context
+        except TypeError:
+            pass
 
 
 class AppointmentDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
