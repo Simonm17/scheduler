@@ -2,10 +2,15 @@
 
 {% block content %}
     {% if user.is_authenticated %}
+        <div class="row">
+            <div class="col">
+                <h2 class="text-right mr-3">Appointments scheduled by <a class="text-dark" href="{% url 'profile' %}">{{ user.username }}</a></h2>
+            </div>
+        </div>
         <div class="row mt-5">
 
             <div class="col-sm-7 col-lg-6 order-lg-2">
-                <a class="btn btn-primary btn-lg btn-block mb-3" href="{% url 'scheduling:new_appointment' %}">Schedule new appointment</a>
+                <a class="btn btn-primary btn-lg btn-block mb-3 py-3" href="{% url 'scheduling:new_appointment' %}">Schedule new appointment</a>
             </div>
 
             <div class="col-sm-7 col-lg-6 order-lg-1">
