@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{% url 'scheduling:home' %}">Home</a></li>
+    <li class="breadcrumb-item active"><a href="{% url 'scheduling:appointment' object.id %}">Appointment Detail</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Confirm Delete Appointment</li>
+{% endblock %}
+
 {% block content %}
 
 <form method="POST">

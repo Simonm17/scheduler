@@ -4,6 +4,11 @@
 
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{% url 'scheduling:home' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Sign Up</li>
+{% endblock %}
+
 {% block content %}
 <h1>{% trans "Sign Up" %}</h1>
 

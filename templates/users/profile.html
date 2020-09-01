@@ -1,6 +1,11 @@
 {% extends "account/base.html" %}
 {% load crispy_forms_tags %}
 
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{% url 'scheduling:home' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Profile</li>
+{% endblock %}
+
 {% block content %}
 <img src="{{ user.profile.image.url }}">
 <form method="POST" enctype="multipart/form-data">
