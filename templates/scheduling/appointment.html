@@ -6,12 +6,21 @@
 {% endblock %}
 
 {% block content %}
-    <h4>{{ object }}</h4>
-    <h5>{{ object.appointment_date }}</h5>
-    <h5>Applicant: {{ object.applicant }}</h5>
-    <h5>Doctor: {{ object.doctor }}</h5>
-    <a href="{% url 'scheduling:update' object.id %}">Change appointment date</a>
-    <a href="{% url 'applicants:update' object.applicant.id %}?next={{ request.path }}">edit applicant</a>
-    <a href="{% url 'doctors:update' object.doctor.id %}?next={{ request.path }}">edit doctor</a>
-    <a href="{% url 'scheduling:delete' object.id %}">Delete appointment</a>
+    <div class="row">
+        <div class="col-8">
+            <h1>{{ object.applicant }}'s Appointment </h1>
+            <h2>On {{ object.appointment_date }}</h2>
+            <h2>With Dr. {{ object.doctor }}</h2>
+        </div>
+        <div class="col-3">
+            <ul class="list-unstyled">
+                <li><a class="btn btn-outline-info btn-sm m-1" href="{% url 'scheduling:update' object.id %}">Change appointment date</a></li>
+                <li><a class="btn btn-outline-info btn-sm m-1" href="{% url 'applicants:update' object.applicant.id %}?next={{ request.path }}">edit applicant</a></li>
+                <li><a class="btn btn-outline-info btn-sm m-1" href="{% url 'doctors:update' object.doctor.id %}?next={{ request.path }}">edit doctor</a></li>
+                <br />
+                <li><a class="btn btn-outline-danger" href="{% url 'scheduling:delete' object.id %}">Confirm/Delete appointment</a></li>
+            </ul>
+        </div>
+    </div>
+
 {% endblock %}
