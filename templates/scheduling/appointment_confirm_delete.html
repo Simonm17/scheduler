@@ -10,8 +10,9 @@
 
 <form method="POST">
     {% csrf_token %}
-    <p>Delete the appointment permanently.</p>
-    <input type="submit" value="Delete">
+    <p>You are about to confirm and delete the appointment permanently.</p>
+    <input class="btn btn-danger" type="submit" value="Confirm & Delete">
+    <button class="btn btn-outline-secondary btn-sm"><a href="{% url 'scheduling:appointment' object.id %}">Cancel</a></button>
 </form>
 
 {% endblock %}

@@ -18,7 +18,7 @@
             </div>
 
             <div class="col-sm-7 col-lg-6 order-lg-1">
-
+                {% if todays_appointments %}
                 <h3>Today's appointments</h3>
                 <ol>
                     {% for appointment in todays_appointments %}
@@ -29,9 +29,11 @@
                         </li>
                     {% endfor %}
                 </ol>
+                {% endif %}
             </div>
 
             <div class="col-sm-7 col-lg-6 order-lg-3">
+                {% if upcoming_appointments %}
                 <h4>Upcoming appointments</h4>
                 <ol>
                     {% for appointment in upcoming_appointments %}
@@ -42,9 +44,11 @@
                         </li>
                     {% endfor %}
                 </ol>
+                {% endif %}
             </div>
 
             <div class="col-sm-7 col-lg-6 order-lg-4">
+                {% if past_appointments %}
                 <h4>Past appointments</h4>
                 <ol>
                     {% for appointment in past_appointments %}
@@ -55,6 +59,7 @@
                         </li>
                     {% endfor %}
                 </ol>
+                {% endif %}
             </div>
 
         </div>

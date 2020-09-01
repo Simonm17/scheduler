@@ -1,14 +1,16 @@
 from django.shortcuts import render
 from django.views.generic import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.messages.views import SuccessMessageMixin
 
 from .models import Doctor
 from .forms import DoctorForm
 
-class DoctorUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class DoctorUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
     model = Doctor
     form_class = DoctorForm
     template_name = 'doctors/update_doctor.html'
+    success_message = 'You have successfully updated the contact.'
 
     def test_func(self):
         """ Validate whether user is staff or scheduler. """

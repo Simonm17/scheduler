@@ -7,14 +7,34 @@
 {% endblock %}
 
 {% block content %}
-<img src="{{ user.profile.image.url }}">
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ p_form|crispy }}
-    {{ u_form|crispy }}
-    <input type="submit" value="update">
-</form>
-<a href="{% url 'account_change_password' %}">Change password</a>
-<a href="{% url 'account_email' %}">Change email</a>
+<div class="row">
+    <div class="col">
+        <div class="d-flex">
+            <img class="img-thumbnail" src="{{ user.profile.image.url }}">
+            <div class="ml-3">
+                <h2>{{ user.username }}</h2>
+                {% if user.email %}
+                <p>{{ user.email }}</p>
+                {% else %}
+                <p>You currently do not have a registered email. Register <a class="text-info" href="{% url 'account_email' %}">here.</a></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ u_form|crispy }}
+            {{ p_form|crispy }}
+            <hr />
+            <input class="btn btn-outline-dark" type="submit" value="Update">
+        </form>
+        <br />
+        <a class="btn btn-outline-dark" href="{% url 'account_change_password' %}">Change password</a>
+        <a class="btn btn-outline-dark" href="{% url 'account_email' %}">Change email</a>
+    </div>
+</div>
 
 {% endblock %}

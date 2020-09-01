@@ -10,6 +10,7 @@ from django.views.generic import (
     DeleteView,
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
@@ -100,10 +101,11 @@ def schedule(request):
     )
 
 
-class AppointmentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class AppointmentUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
     model = Appointment
     form_class = AppointmentForm
     template_name = 'scheduling/update_appointment.html'
+    success_message = 'Your appointment date has been updated.'
 
     def test_func(self):
         """ Validate whether user is staff or scheduler. """

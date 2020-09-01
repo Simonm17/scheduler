@@ -10,7 +10,7 @@ from .forms import ProfileUpdateForm, UserUpdateForm
 @login_required
 def profile(request):
     if request.method == 'POST':
-        u_form = UserUpdateForm(instance=request.user)
+        u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(
             request.POST,
             request.FILES,
