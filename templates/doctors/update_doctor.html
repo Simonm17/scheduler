@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
+{% block head_title %}— Update Doctor Information{% endblock %}
+
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{% url 'scheduling:home' %}">Home</a></li>
     <li class="breadcrumb-item active"><a href="{{ next_url }}">Appointment Detail</a></li>

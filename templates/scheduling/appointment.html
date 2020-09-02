@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% block head_title %}— Appointment Details for {{ object.applicant }}{% endblock %}
+
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{% url 'scheduling:home' %}">Home</a></li>
     <li class="breadcrumb-item active" aria-current="page">Appointment Detail</li>

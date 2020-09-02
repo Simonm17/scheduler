@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% block head_title %}— Confirm & Delete Appointment for {{ object.applicant }}{% endblock %}
+
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{% url 'scheduling:home' %}">Home</a></li>
     <li class="breadcrumb-item active"><a href="{% url 'scheduling:appointment' object.id %}">Appointment Detail</a></li>
