@@ -63,6 +63,24 @@
             </div>
 
         </div>
+    {% else %}
+        <div class="row">
+            <div class="col">
+                <h2>Welcome to Adjango Beta's scheduling app.</h2>
+                <p>This app is created for helping firms and individuals to schedule California's Workers' Compensation QME/AME evaluations.</p>
+                <br />
+                <br />
+                <br />
+                <br />
+                <h5>Current features:</h5>
+                <ul>
+                    <li>Allow users to schedule and track QME appointment dates</li>
+                    <li>Display filtered lists of upcoming and past appointments</li>
+                </ul>
+                <br />
+                <p><a class="text-info" href="{% url 'account_login' %}">Sign in</a> and start using the app today!</p>
+            </div>
+        </div>
     {% endif %}
 
 {% endblock %}

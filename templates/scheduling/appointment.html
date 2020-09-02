@@ -14,11 +14,11 @@
         </div>
         <div class="col-3">
             <ul class="list-unstyled">
-                <li><a class="btn btn-outline-info btn-sm m-1" href="{% url 'scheduling:update' object.id %}">Change appointment date</a></li>
-                <li><a class="btn btn-outline-info btn-sm m-1" href="{% url 'applicants:update' object.applicant.id %}?next={{ request.path }}">edit applicant</a></li>
-                <li><a class="btn btn-outline-info btn-sm m-1" href="{% url 'doctors:update' object.doctor.id %}?next={{ request.path }}">edit doctor</a></li>
+                <li><a class="btn btn-outline-info btn-sm m-1" href="{% url 'scheduling:update' object.id %}">Change Appointment Date</a></li>
+                <li><a class="btn btn-outline-info btn-sm m-1" href="{% url 'applicants:update' object.applicant.id %}?next={{ request.path }}">Edit Applicant</a></li>
+                <li><a class="btn btn-outline-info btn-sm m-1" href="{% url 'doctors:update' object.doctor.id %}?next={{ request.path }}">Edit Doctor</a></li>
                 <br />
-                <li><a class="btn btn-outline-danger" href="{% url 'scheduling:delete' object.id %}">Confirm/Delete appointment</a></li>
+                <li><a class="btn btn-outline-danger" href="{% url 'scheduling:delete' object.id %}">Confirm/Delete Appointment</a></li>
             </ul>
         </div>
     </div>
