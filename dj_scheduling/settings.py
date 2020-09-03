@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'crispy_forms',
     'storages',
+    'sorl.thumbnail',
 
     'scheduling.apps.SchedulingConfig',
     'applicants.apps.ApplicantsConfig',

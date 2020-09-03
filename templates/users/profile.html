@@ -1,5 +1,6 @@
 {% extends "account/base.html" %}
 {% load crispy_forms_tags %}
+{% load thumbnail %}
 
 {% block head_title %}— Profile{% endblock %}
 
@@ -12,7 +13,9 @@
 <div class="row">
     <div class="col">
         <div class="d-flex">
-            <img class="img-thumbnail" src="{{ user.profile.image.url }}">
+            {% thumbnail user.profile.image "200x200" crop="center" as im %}
+                <img class="rounded-circle" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+            {% endthumbnail %}
             <div class="ml-3">
                 <h2>{{ user.username }}</h2>
                 {% if user.email %}
