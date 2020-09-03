@@ -9,13 +9,17 @@
 {% endblock %}
 
 {% block content %}
+<div class="row">
+    <div class="col-6">
+        <form method="POST">
+            {% csrf_token %}
+            {{ s_form|crispy }}
+            {{ a_form|crispy }}
+            {{ d_form|crispy }}
+            <button class="btn btn-outline-light" type="submit">Schedule</button>
+        </form>
+    </div>
+</div>
 
-<form method="POST">
-    {% csrf_token %}
-    {{ s_form|crispy }}
-    {{ a_form|crispy }}
-    {{ d_form|crispy }}
-    <button class="btn btn-outline-light" type="submit">Schedule</button>
-</form>
 
 {% endblock %}
