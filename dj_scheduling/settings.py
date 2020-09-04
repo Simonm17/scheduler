@@ -179,6 +179,6 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # HEROKU SETTINGS
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
