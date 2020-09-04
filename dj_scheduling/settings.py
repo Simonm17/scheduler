@@ -184,6 +184,8 @@ DEBUG_PROPAGATE_EXCEPTIONS = True
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 # STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
-WHITENOISE_USE_FINDERS = True
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# WHITENOISE_USE_FINDERS = True
+
 
 django_heroku.settings(locals())
