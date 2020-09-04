@@ -17,8 +17,8 @@ SECRET_KEY = os.environ.get('DJ_SCHEDULING_SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    '127.0.0.1',
     'medigal.herokuapp.com',
+    '127.0.0.1',
 ]
 
 
