@@ -24,7 +24,7 @@
                     {% for appointment in todays_appointments %}
                         <li>
                             <a href="{% url 'scheduling:appointment' appointment.id %}">
-                                {{ appointment.appointment_date|date:"M d, Y g:iA" }} — Applicant: {{ appointment.applicant }}
+                                {{ appointment.appointment_date|date:"M d, Y g:iA" }} — {{ appointment.applicant }}
                             </a>
                         </li>
                     {% endfor %}
@@ -39,7 +39,7 @@
                     {% for appointment in upcoming_appointments %}
                         <li>
                             <a href="{% url 'scheduling:appointment' appointment.id %}">
-                                {{ appointment.appointment_date|date:"M d, Y g:iA" }} — Applicant: {{ appointment.applicant }}
+                                {{ appointment.appointment_date|date:"M d, Y g:iA" }} — {{ appointment.applicant }}
                             </a>
                         </li>
                     {% endfor %}
@@ -54,7 +54,7 @@
                     {% for appointment in past_appointments %}
                         <li>
                             <a href="{% url 'scheduling:appointment' appointment.id %}">
-                                {{ appointment.appointment_date|date:"M d, Y g:iA" }} — Applicant: {{ appointment.applicant }}g
+                                {{ appointment.appointment_date|date:"M d, Y g:iA" }} — {{ appointment.applicant }}g
                             </a>
                         </li>
                     {% endfor %}
